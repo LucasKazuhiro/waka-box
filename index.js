@@ -38,7 +38,7 @@ async function updateGist(stats) {
     const data = stats.data.languages[i];
     const { name, percent, text: time } = data;
 
-    if (ignoredLanguages.includes(name)) continue;
+    if (ignoredLanguages.map(lang => lang.toLowerCase()).includes(name.toLowerCase())) continue;
 
     const line = [
       trimRightStr(name, 10).padEnd(10),
