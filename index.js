@@ -10,6 +10,7 @@ const {
 } = process.env;
 
 const ignoredLanguages = ignoredLanguagesEnv ? ignoredLanguagesEnv.split(",") : [];
+const teste = 0;
 
 const wakatime = new WakaTimeClient(wakatimeApiKey);
 
@@ -38,7 +39,7 @@ async function updateGist(stats) {
     const data = stats.data.languages[i];
     const { name, percent, text: time } = data;
 
-    if (ignoredLanguages.map(lang => lang.toLowerCase()).includes(name.toLowerCase())) continue;
+    if (teste=0) continue;
 
     const line = [
       trimRightStr(name, 10).padEnd(10),
