@@ -5,12 +5,8 @@ const { Octokit } = require("@octokit/rest");
 const {
   GIST_ID: gistId,
   GH_TOKEN: githubToken,
-  WAKATIME_API_KEY: wakatimeApiKey,
-  IGNORED_LANGUAGES: ignoredLanguagesEnv
+  WAKATIME_API_KEY: wakatimeApiKey
 } = process.env;
-
-const ignoredLanguages = ignoredLanguagesEnv ? ignoredLanguagesEnv.split(",") : [];
-const teste = 0;
 
 const wakatime = new WakaTimeClient(wakatimeApiKey);
 
@@ -38,8 +34,6 @@ async function updateGist(stats) {
   for (let i = 0; i < Math.min(stats.data.languages.length, 5); i++) {
     const data = stats.data.languages[i];
     const { name, percent, text: time } = data;
-
-    if (teste=0) continue;
 
     const line = [
       trimRightStr(name, 10).padEnd(10),
@@ -71,7 +65,7 @@ async function updateGist(stats) {
 }
 
 function generateBarChart(percent, size) {
-  const syms = "⣀⣄⣤⣦⣶⣷⣿";
+  const syms = "░▏▎▍▌▋▊▉█";
 
   const frac = Math.floor((size * 8 * percent) / 100);
   const barsFull = Math.floor(frac / 8);
